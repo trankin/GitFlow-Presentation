@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>git flow with support</title>
+    <link rel="stylesheet" type="text/css" href="gitgraph.js/src/gitgraph.css" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #gitGraph { border: 1px solid red; margin-bottom: 5em; }
+    </style>
+</head>
+
+<body>
+<canvas id="gitGraph"></canvas>
+<div id="detail" class="gitgraph-detail">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, ducimus, qui fuga corporis veritatis doloribus iure nulla optio dolores maiores dolorum ullam alias cum libero obcaecati cupiditate sit illo aperiam possimus voluptatum similique neque explicabo quibusdam aspernatur dolorem. Quod, corrupti magni explicabo nam sequi nesciunt accusamus aliquam dolore! Cumque, quam fugiat ab veritatis. Quia, maxime quas perferendis cupiditate explicabo at atque iusto accusamus. Nesciunt veniam quidem nemo doloribus! Dolore, cupiditate, adipisci, voluptate quam nihil ipsa placeat dolor possimus minus quas nostrum eaque in dicta autem eligendi rerum facilis nesciunt sunt doloremque suscipit enim iure vitae eius voluptates tempora tenetur hic.</div>
+<script src="//code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
+<script src="gitgraph.js/src/gitgraph.js"></script>
+<script type="text/javascript">
+    var graphConfig = new GitGraph.Template({
+        colors: ["#a9c16d", "#a9c16d", "#619dc7", "#ffa454", "#3cbad0", "#d6746b"],
+        branch: {
+            lineWidth: 6,
+            spacingX: 60,
+            showLabel: true,                // display branch names on graph
+            mergeStyle: "bezier",
+            labelFont: "normal 12pt Arial"
+        },
+        commit: {
+            spacingY: -50,
+            dot: {
+                size: 12,
+                strokeWidth: 4,
+                strokeColor: 'black'
+            },
+            tag: {
+                font: "normal 10pt Arial",
+                color: "yellow"
+            },
+            message: {
+                color: 'black',
+                font: "normal 10pt Arial",
+                displayAuthor: true,
+                displayBranch: true,
+                displayHash: false
+            }
+        }
+    });
+
+    var config = {
+        template: graphConfig,
+        mode: "extended",
+        orientation: "vertical",
+        author: "Tom",
+        message: "Lorem ipsum"
+    };
+
+    var feature1Col = 0;
+    var feature2Col = 1;
+    var developCol = 2;
+    var releaseCol = 3;
+    var masterCol = 4;
+    var hotfixCol = 5;
+
+
+    var gitgraph = new GitGraph(config);
+
+    var master, develop, feature1, feature2, hotfix, release;
+
+
+    var cmdArr = [];
+    cmdArr.push(['master = gitgraph.branch({name: "master", column: masterCol})',
+                'master.commit().commit({tag: "1.0"});']);
+
+    cmdArr.push(['develop = master.branch({name: "develop", column: developCol});',
+                'develop.commit();']);
+
+    cmdArr.push(['feature1 = develop.branch({name: "feature/test", column: feature1Col});',
+                'feature1.commit();',
+                'feature1.commit();']);
+    cmdArr.push(['feature2 = develop.branch({name: "feature/test", column: feature2Col});',
+                'feature2.commit();',
+                'feature2.commit();']);
+    cmdArr.push(['feature1.merge(master);',
+                'feature1.merge(develop);',
+                'feature1.delete();']);
+    cmdArr.push(['hotfix = master.branch({name: "hotfix: bug", column: hotfixCol});',
+                'hotfix.commit("bugfix");',
+                'hotfix.commit("Another bugfix");']);
+    cmdArr.push(['hotfix.merge(master, {tag: "1.0.1"});',
+                'hotfix.merge(develop);',
+                'hotfix.delete();']);
+    cmdArr.push(['release = develop.branch({name: "release", column: releaseCol});',
+                'release.commit("bugfix");',
+                'release.commit("Another bugfix");']);
+    cmdArr.push(['develop.commit("");',
+                'develop.commit("");',
+                'feature1.commit("");',
+                'feature2.commit("")']);
+
+
+
+    cmdArr.push(['release.merge(master, {tag: "1.1"});',
+                'release.merge(develop);',
+                'release.delete();']);
+
+
+    cmdArr.push(['develop.merge(master);']);
+    cmdArr.push(['feature1.commit();']);
+
+    var j = 0;
+    var dir = 1;
+    window.addEventListener("click", function(){
+
+
+
+        $.each(cmdArr[j], function( index, value ) {
+            eval(value);
+        });
+
+
+        if(j >= cmdArr.length){ dir = -1 };
+        if(j <= 0){ dir = 1 };
+
+        j += dir;
+
+        $("html, body").stop().animate({ scrollTop: $(document).height() }, 1500);
+
+    });
+
+</script>
+</body>
+
+</html>
