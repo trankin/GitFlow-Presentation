@@ -871,7 +871,6 @@
       return;
     }
 	
-	console.log(options.parent.template);
     // Options
     options = (typeof options === "object") ? options : {};
     this.parent = options.parent;
