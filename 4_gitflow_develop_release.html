@@ -30,7 +30,7 @@
 
     var gitgraph = new GitGraph(config);
 
-    var master, develop, release
+    var master, develop, release, feature1, feature2, hotfix
 
 
     var cmdArr = [];
@@ -38,14 +38,39 @@
     cmdArr.push(['develop = master.branch({name: "develop", column: developCol}); develop.commit("Begin work on 1.0 release");']);
     cmdArr.push(['develop.commit(); develop.commit(); develop.commit();']);
 
+    // Start Release 1.0
     cmdArr.push(['release = develop.branch({name: "release 1.0", column: releaseCol}); release.commit("Begin Release 1.0 Testing");']);
     cmdArr.push(['release.commit("bugfix"); release.commit("bugfix");develop.commit();develop.commit();release.commit("bugfix");']);
     cmdArr.push(['release.merge(master, {tag: "1.0"}); release.merge(develop); release.delete();']);
     cmdArr.push(['develop.commit(); develop.commit(); develop.commit();']);
 
+    //Start Release 1.1
     cmdArr.push(['release = develop.branch({name: "release 1.1", column: releaseCol}); release.commit("Begin Release 1.1");']);
     cmdArr.push(['release.commit("bugfix"); release.commit("bugfix");develop.commit();develop.commit();release.commit("bugfix");']);
     cmdArr.push(['release.merge(master, {tag: "1.1"}); release.merge(develop); release.delete();']);
+
+
+    // Start Features
+    cmdArr.push(['feature2 = develop.branch({name: "feature / es (1.3)", column: feature2Col}); feature2.commit();']);
+    cmdArr.push(['feature1 = develop.branch({name: "feature / boot (1.2)", column: feature1Col}); feature1.commit();']);
+    cmdArr.push(['feature1.commit(); feature2.commit(); feature1.commit(); develop.commit(); feature1.commit(); feature2.commit; develop.commit();']);
+
+    // Finish Feature
+    cmdArr.push(['feature1.merge(develop); feature1.delete(); develop.commit();']);
+
+    // Start Release 1.2
+    cmdArr.push(['release = develop.branch({name: "release 1.2", column: releaseCol}); release.commit("Begin Release 1.2");']);
+    cmdArr.push(['release.commit("bugfix"); release.commit("bugfix"); develop.commit(); feature2.merge(develop); feature2.delete(); release.commit("bugfix");']);
+    cmdArr.push(['release.merge(master, {tag: "1.2"}); release.merge(develop); release.delete(); develop.commit();']);
+
+
+    // Hotfix
+    cmdArr.push(['hotfix = master.branch({name: "hotfix", column: hotfixCol}); hotfix.commit("BUG!!!!!!!!");']);
+    cmdArr.push(['hotfix.commit(); develop.commit();']);
+    cmdArr.push(['hotfix.merge(master, {tag: "1.2.1"}); hotfix.merge(develop); hotfix.delete();']);
+
+    // End
+    cmdArr.push(['develop.commit(); develop.commit({tag: "End"});']);
 </script>
 
 <script src="js/global.js?rev=80969a3c893903b392995f05ceaf6e45"></script>

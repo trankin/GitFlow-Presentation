@@ -1,5 +1,5 @@
-var feature1Col = 0;
-var feature2Col = 1;
+var feature1Col = 1;
+var feature2Col = 0;
 var developCol = 2;
 var releaseCol = 3;
 var masterCol = 4;
