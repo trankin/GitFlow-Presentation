@@ -880,7 +880,7 @@
     this.template = this.parent.template;
     this.context = this.parent.context;
     this.branch = options.branch;
-    this.author = options.author || quote.author || this.parent.author;
+    this.author = options.author || options.message ? this.parent.author : quote.author;
     this.date = options.date || new Date().toUTCString();
     this.detail = options.detail || null;
     this.tag = options.tag || null;

@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>git flow with support</title>
+    <link rel="stylesheet" type="text/css" href="gitgraph.js/src/gitgraph.css?rev=8d52d0371ba500bac5bbf822a7b94276" />
+    <link rel="stylesheet" type="text/css" href="css/base.css?rev=9880cbb07a27cb17a5e51e09a31c6802" />
+</head>
+
+<body>
+<div id="gitWrapHorz">
+    <canvas id="gitGraph"></canvas>
+</div>
+<script src="js/quotes.js?rev=3ddd10f422ae82ba9dcad73c749cca20"></script>
+<script src="js/jquery-2.2.2.min.js?rev=1d35678c5edbb639ab7aa5cce0856f57"></script>
+<script src="gitgraph.js/src/gitgraph.js?rev=2f405b162c678320feb62bde876e8ca2"></script>
+<script src="js/presoTemplate.js?rev=0f04015c298f47981512c72ec22e950f"></script>
+<script type="text/javascript">
+    graphConfig.colors[0] =  ["#6f6dc1"]
+
+    var config = {
+        template: graphConfig,
+        mode: "condensed",
+        orientation: "horizontal",
+        author: "Tom",
+        message: "Lorem ipsum"
+    };
+
+
+
+    var gitgraph = new GitGraph(config);
+
+    var github, local, goodbranch, badbranch, bobgood, bobbad;
+
+
+    var cmdArr = [];
+    cmdArr.push(['github = gitgraph.branch({name: "github", column: 2}); github.commit();']);
+
+    cmdArr.push(['local = github.branch({name: "local", column: 5}); local.commit();']);
+    cmdArr.push(['local.commit();']);
+    cmdArr.push(['local.commit();']);
+    cmdArr.push(['local.commit();local.merge(github, {tag: "1.0"});']);
+
+    cmdArr.push(['bob = github.branch({name: "bob", column: 0}); bob.commit();']);
+
+    cmdArr.push(['local.commit();']);
+    cmdArr.push(['bob.commit();']);
+    cmdArr.push(['local.commit();']);
+    cmdArr.push(['bob.commit();']);
+    cmdArr.push(['bob.commit();bob.merge(github, {tag: "1.1"});']);
+    cmdArr.push(['github.merge(local);'])
+    cmdArr.push(['local.commit();local.merge(github, {tag: "1.2"});']);
+    cmdArr.push(['local.commit();']);
+    cmdArr.push(['local.commit();']);
+
+    cmdArr.push(['github.merge(bob);']);
+
+
+    cmdArr.push(['badbranch = local.branch({name: "experiment", column: 4})', 'badbranch.commit();']);
+    cmdArr.push(['badbranch.commit();']);
+
+    cmdArr.push(['bobbad = bob.branch({name: "experiment", column: 1})', 'bobbad.commit();']);
+    cmdArr.push(['bobbad.commit();']);
+
+
+    cmdArr.push(['badbranch.commit();']);
+    cmdArr.push(['badbranch.delete();local.checkout();local.commit();']);
+    cmdArr.push(['local.commit();'])
+
+    cmdArr.push(['bobbad.commit();']);
+    cmdArr.push(['bobbad.delete();bob.checkout();bob.commit();']);
+    cmdArr.push(['bob.commit();'])
+
+    cmdArr.push(['goodbranch = local.branch({name: "experiment", column: 4})', 'goodbranch.commit();']);
+    cmdArr.push(['goodbranch.commit();goodbranch.commit();goodbranch.commit();']);
+    cmdArr.push(['goodbranch.merge(local);goodbranch.delete();local.merge(github, {tag: "1.3"});']);
+
+
+    cmdArr.push(['github.merge(bob);']);
+    cmdArr.push(['bobgood = bob.branch({name: "experiment", column: 1})', 'bobgood.commit();']);
+    cmdArr.push(['bobgood.commit();bobgood.commit();bobgood.commit();']);
+    cmdArr.push(['bobgood.merge(bob);bobgood.delete();bob.merge(github, {tag: "1.4"});']);
+
+    cmdArr.push(['github.merge(local); local.commit();']);
+    cmdArr.push(['local.commit();']);
+    cmdArr.push(['bob.commit();']);
+    cmdArr.push(['local.commit();']);
+    cmdArr.push(['local.commit();']);
+    cmdArr.push(['bob.commit();']);
+    cmdArr.push(['bob.commit();']);
+    cmdArr.push(['local.merge(github);github.merge(bob);bob.merge(github,{tag: "end"});']);
+
+
+</script>
+
+<script src="js/global.js?rev=80969a3c893903b392995f05ceaf6e45"></script>
+
+</body>
+
+</html>
