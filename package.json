@@ -1,0 +1,25 @@
+{
+  "name": "gitgraphtest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gitgraph.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trankin/GitFlow-Presentation.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trankin/GitFlow-Presentation/issues"
+  },
+  "homepage": "https://github.com/trankin/GitFlow-Presentation#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-batch": "^1.0.5",
+    "gulp-rev-append": "^0.1.6",
+    "gulp-watch": "^4.3.5"
+  }
+}

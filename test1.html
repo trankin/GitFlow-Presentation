@@ -4,58 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <title>git flow with support</title>
-    <link rel="stylesheet" type="text/css" href="gitgraph.js/src/gitgraph.css" />
-    <style>
-        html, body {width: 100%;}
-        body {
-            margin: 0;
-            padding: 0;
-        }
-        #gitWrap { display: flex;
-            align-items: center;
-            justify-content: center; }
-        #gitGraph { margin-bottom: 3em;}
-    </style>
+    <link rel="stylesheet" type="text/css" href="gitgraph.js/src/gitgraph.css?rev=8d52d0371ba500bac5bbf822a7b94276" />
+    <link rel="stylesheet" type="text/css" href="css/base.css?rev=9880cbb07a27cb17a5e51e09a31c6802" />
 </head>
 
 <body>
 <div id="gitWrap">
-<canvas id="gitGraph"></canvas>
+    <canvas id="gitGraph"></canvas>
 </div>
-<div id="detail" class="gitgraph-detail">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, ducimus, qui fuga corporis veritatis doloribus iure nulla optio dolores maiores dolorum ullam alias cum libero obcaecati cupiditate sit illo aperiam possimus voluptatum similique neque explicabo quibusdam aspernatur dolorem. Quod, corrupti magni explicabo nam sequi nesciunt accusamus aliquam dolore! Cumque, quam fugiat ab veritatis. Quia, maxime quas perferendis cupiditate explicabo at atque iusto accusamus. Nesciunt veniam quidem nemo doloribus! Dolore, cupiditate, adipisci, voluptate quam nihil ipsa placeat dolor possimus minus quas nostrum eaque in dicta autem eligendi rerum facilis nesciunt sunt doloremque suscipit enim iure vitae eius voluptates tempora tenetur hic.</div>
-<script src="//code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
-<script src="gitgraph.js/src/gitgraph.js"></script>
-<script type="text/javascript">
-    var graphConfig = new GitGraph.Template({
-        colors: ["#a9c16d", "#a9c16d", "#619dc7", "#ffa454", "#3cbad0", "#d6746b"],
-        branch: {
-            lineWidth: 6,
-            spacingX: 60,
-            showLabel: true,                // display branch names on graph
-            mergeStyle: "bezier",
-            labelFont: "bold 12pt Arial"
-        },
-        commit: {
-            spacingY: -50,
-            dot: {
-                size: 12,
-                strokeWidth: 4,
-                strokeColor: 'black'
-            },
-            tag: {
-                font: "normal 12pt Courier",
-                color: "#f5f298"
-            },
-            message: {
-                color: '#333',
-                font: "normal 12pt Consolas",
-                displayAuthor: true,
-                displayBranch: true,
-                displayHash: false
-            }
-        }
-    });
 
+<script src="js/jquery-2.2.2.min.js?rev=1d35678c5edbb639ab7aa5cce0856f57"></script>
+<script src="gitgraph.js/src/gitgraph.js?rev=8eaf144af53d6156333a43617e47f868"></script>
+<script src="js/presoTemplate.js?rev=d5f20ce6dd743a245d33c93d3b8ce38f"></script>
+<script type="text/javascript">
     var config = {
         template: graphConfig,
         mode: "extended",
@@ -117,22 +78,11 @@
     cmdArr.push(['develop.merge(master);']);
     cmdArr.push(['feature1.commit();']);
 
-    var j = 0;
-    window.addEventListener("click", function(){
 
-
-        if(j < cmdArr.length) {
-            $.each(cmdArr[j++], function( index, value ) {
-                eval(value);
-            });
-
-            $("html, body").stop().animate({ scrollTop: $(document).height(), scrollLeft: ($(document).outerWidth() - $(window).width()) }, 1500);
-        }
-
-
-    });
 
 </script>
+
+<script src="js/global.js?rev=1fd261cd82a735bea6be539869c0b7f7"></script>
 </body>
 
 </html>
