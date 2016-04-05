@@ -10,7 +10,7 @@ window.addEventListener("click", function(){
         $("html, body").stop().animate({
             scrollTop: $(document).height(),
             scrollLeft: ($(document).outerWidth() - $(window).width())
-        }, 1500);
+        }, 800);
     }
 
 
