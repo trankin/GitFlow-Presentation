@@ -35,7 +35,7 @@
     var cmdArr = [];
     cmdArr.push(['github = gitgraph.branch({name: "github", column: 2}); github.commit();']);
 
-    cmdArr.push(['local = github.branch({name: "local", column: 5}); local.commit();']);
+    cmdArr.push(['local = github.branch({name: "local project", column: 5}); local.commit();']);
     cmdArr.push(['local.commit();']);
     cmdArr.push(['local.commit();']);
     cmdArr.push(['local.commit();local.merge(github, {tag: "1.0"});']);
