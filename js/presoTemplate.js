@@ -19,7 +19,7 @@ var graphConfig = new GitGraph.Template({
             color: "#f5f298"
         },
         message: {
-            color: '#333',
+            color: '#222',
             font: "normal 12pt Consolas",
             displayAuthor: true,
             displayBranch: true,

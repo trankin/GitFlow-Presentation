@@ -870,28 +870,31 @@
     if ( options.parent instanceof GitGraph === false ) {
       return;
     }
-	
+
     // Options
     options = (typeof options === "object") ? options : {};
+
+    var quote = randomQuote();
+
     this.parent = options.parent;
     this.template = this.parent.template;
     this.context = this.parent.context;
     this.branch = options.branch;
-    this.author = options.author || this.parent.author;
+    this.author = options.author || quote.author || this.parent.author;
     this.date = options.date || new Date().toUTCString();
     this.detail = options.detail || null;
     this.tag = options.tag || null;
     this.tagColor = options.tagColor || options.color;
     this.tagFont = options.tagFont || this.template.commit.tag.font;
     this.sha1 = options.sha1 || (Math.random( 100 )).toString( 16 ).substring( 3, 10 );
-    this.message = options.message || this.parent.message || "He doesn't like George Michael! Boooo!";
+    this.message = options.message || quote.quote || this.parent.message || "He doesn't like George Michael! Boooo!";
     this.arrowDisplay = options.arrowDisplay;
     this.messageDisplay = booleanOptionOr( options.messageDisplay, this.template.commit.message.display );
     this.messageAuthorDisplay = booleanOptionOr( options.messageAuthorDisplay, this.template.commit.message.displayAuthor );
     this.messageBranchDisplay = booleanOptionOr( options.messageBranchDisplay, this.template.commit.message.displayBranch );
     this.messageHashDisplay = booleanOptionOr( options.messageHashDisplay, this.template.commit.message.displayHash );
-    this.messageColor = options.messageColor || options.color;
-    this.messageFont = options.messageFont || this.template.commit.message.font;
+    this.messageColor = options.message ? (options.messageColor || options.color) : "#BBB";
+    this.messageFont = options.message ? (options.messageFont || this.template.commit.message.font) : "normal 11pt Consolas";
     this.dotColor = options.dotColor || options.color;
     this.dotSize = options.dotSize || this.template.commit.dot.size;
     this.dotStrokeWidth = options.dotStrokeWidth || this.template.commit.dot.strokeWidth;
