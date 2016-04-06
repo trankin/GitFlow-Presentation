@@ -4,7 +4,7 @@
     <head>
     <meta charset="UTF-8">
     <title>git flow with support</title>
-<link rel="stylesheet" type="text/css" href="gitgraph.js/src/gitgraph.css?rev=8d52d0371ba500bac5bbf822a7b94276" />
+    <link rel="stylesheet" type="text/css" href="gitgraph.js/src/gitgraph.css?rev=8d52d0371ba500bac5bbf822a7b94276" />
     <link rel="stylesheet" type="text/css" href="css/base.css?rev=9880cbb07a27cb17a5e51e09a31c6802" />
     </head>
 
@@ -12,11 +12,16 @@
     <div id="gitWrapHorz">
     <canvas id="gitGraph"></canvas>
     </div>
+
+    <script src="js/latest-v2.js?rev=f9925adf6b1d16dc6fcb106e17622726"></script>
     <script src="js/quotes.js?rev=3ddd10f422ae82ba9dcad73c749cca20"></script>
-    <script src="js/jquery-2.2.2.min.js?rev=1d35678c5edbb639ab7aa5cce0856f57"></script>
-    <script src="gitgraph.js/src/gitgraph.js?rev=2f405b162c678320feb62bde876e8ca2"></script>
+    <script src="js/jquery-2.2.2.min.js?rev=439b16301fd7737850f1d5e183339091"></script>
+    <script src="gitgraph.js/src/gitgraph.js?rev=6b2bf1a840a7f8e01cde1df2b46e7fe2"></script>
     <script src="js/presoTemplate.js?rev=0f04015c298f47981512c72ec22e950f"></script>
     <script type="text/javascript">
+
+
+
 var config = {
     template: graphConfig,
     mode: "condensed",
@@ -25,7 +30,7 @@ var config = {
     message: "Lorem ipsum"
 };
 
-
+var currentPage = "1_local";
 
 var gitgraph = new GitGraph(config);
 
@@ -64,7 +69,7 @@ cmdArr.push(['local.commit({tag: "end"});']);
 
 </script>
 
-<script src="js/global.js?rev=80969a3c893903b392995f05ceaf6e45"></script>
+<script src="js/global.js?rev=649f25277e8429139a69f9892ef033c8"></script>
 
     </body>
 

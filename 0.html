@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="js/latest-v2.js"></script>
+    <script src="js/jquery-2.2.2.min.js?rev=439b16301fd7737850f1d5e183339091"></script>
+    <style type="text/css">
+        .notes { display: none; }
+    </style>
+</head>
+<body>
+    <div id="click">asdf</div>
+    <ol id="1_local" class="notes">
+        <li>Hi there</li>
+    </ol>
+
+    <ol id="2_github_local" class="notes">
+        <li>Hi there  2</li>
+    </ol>
+<script>
+    var webrtc = new SimpleWebRTC({
+
+    });
+
+    webrtc.on('connectionReady', function (sessionId) {
+        webrtc.joinRoom('tomlr_git_graph_test', function(err, desc){
+            if(!err){
+                console.log("IN ROOM" + desc)
+            }else{
+                console.log("ERR ROOM");
+            }
+        });
+    })
+
+    webrtc.on('channelMessage', function(var1, var2, data) {
+        console.log(data);
+        if(data.type == "onpage") {
+            $(".notes").hide();
+            $("#" + data.payload.currentPage).show();
+
+        }
+
+        if(data.type == "currentclick") {
+            console.log("HERE");
+            $("#click").html(data.payload.currentClick)
+        }
+
+
+    });
+
+
+</script>
+</body>
+</html>
