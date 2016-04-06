@@ -4,22 +4,56 @@
     <script src="js/latest-v2.js"></script>
     <script src="js/jquery-2.2.2.min.js?rev=439b16301fd7737850f1d5e183339091"></script>
     <style type="text/css">
+        html, body { font-size: 14pt; font-family: Arial; margin: 0; padding: 0; }
+        #container { margin: .2em; width: 100%; }
         .notes { display: none; }
+        .active { background-color: #f3efc1 }
+        ol {margin-left: 1.3em; padding: 0; }
+        li { border-bottom: 1px solid black; padding: .2em; }
+        .milestone { font-weight: bold; font-style: italic; }
+        .minor { color: #555; }
     </style>
 </head>
 <body>
-    <div id="click">asdf</div>
-    <ol id="1_local" class="notes">
-        <li>Hi there</li>
-    </ol>
+    <div id="container">
+        <ol id="1_local" class="notes" start="0">
+            <li class="milestone">LOCAL WORKFLOW</li>
+            <li class="milestone">terminology: commit, change set</li>
+            <li class="minor">commit - add jquery</li>
+            <li class="minor">commit - update page titles</li>
+            <li class="milestone">finished work: cat images: Tagging, Proper change sets</li>
+            <li class="minor">commit</li>
+            <li class="minor">commit</li>
+            <li class="minor">tag 1.1</li>
+            <li class="minor">commit</li>
+            <li class="minor">commit</li>
+            <li class="milestone">branch: Experiment (html5boil)</li>
+            <li class="minor">branch commit</li>
+            <li class="minor">branch commit</li>
+            <li class="milestone">ignore feature commit</li>
+            <li class="minor">commit</li>
+            <li class="milestone">branch: Experiment (twitter bs)</li>
+            <li class="minor">make several changes</li>
+            <li class="milestone">merge</li>
+            <li class="minor">commit</li>
+            <li class="minor">commit</li>
+            <li class="minor">commit</li>
+            <li class="minor">commit</li>
+            <li class="minor">end</li>
 
-    <ol id="2_github_local" class="notes">
-        <li>Hi there  2</li>
-    </ol>
+        </ol>
+
+        <ol id="2_github_local" class="notes">
+            <li>Hi there  2</li>
+        </ol>
+    </div>
 <script>
+
     var webrtc = new SimpleWebRTC({
 
     });
+
+    var currPage = "";
 
     webrtc.on('connectionReady', function (sessionId) {
         webrtc.joinRoom('tomlr_git_graph_test', function(err, desc){
@@ -32,16 +66,19 @@
     })
 
     webrtc.on('channelMessage', function(var1, var2, data) {
-        console.log(data);
+
         if(data.type == "onpage") {
             $(".notes").hide();
-            $("#" + data.payload.currentPage).show();
+            currPage = data.payload.currentPage;
+            $("#" + currPage).show();
 
         }
 
         if(data.type == "currentclick") {
-            console.log("HERE");
             $("#click").html(data.payload.currentClick)
+            $("li").removeClass("active");
+            console.log(data.payload.currentClick + 1);
+            $("#" + currPage + " li:nth-child(" + (data.payload.currentClick + 1) + ")").addClass("active");
         }
 
 

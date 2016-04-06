@@ -18,7 +18,7 @@ window.addEventListener("click", function(){
 
     if(j < cmdArr.length) {
         webrtc.sendDirectlyToAll("testtest", "currentclick", {currentClick: (j+1)});
-        window.document.title = "step: " + j+1;
+        window.document.title = "step: " + (j+1);
         $.each(cmdArr[j++], function (index, value) {
             eval(value);
         });
