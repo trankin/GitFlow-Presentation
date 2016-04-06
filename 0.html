@@ -44,7 +44,77 @@
         </ol>
 
         <ol id="2_github_local" class="notes">
-            <li>Hi there  2</li>
+            <li class="milestone">GIT + LOCAL WORKFLOW</li>
+            <li class="milestone">github.com</li>
+            <li class="milestone">clone to local</li>
+            <li class="minor">commit</li>
+            <li class="minor">commit</li>
+            <li class="milestone">finished work: push to github</li>
+            <li class="minor">commit</li>
+            <li class="minor">commit</li>
+            <li class="minor">tag 1.1 push to github</li>
+            <li class="minor">commit</li>
+            <li class="minor">commit</li>
+            <li class="minor">branch: Experiment (html5boil)</li>
+            <li class="minor">branch commit</li>
+            <li class="minor">branch commit</li>
+            <li class="minor">ignore feature commit</li>
+            <li class="minor">commit</li>
+            <li class="minor">branch: Experiment (twitter bs)</li>
+            <li class="minor">make several changes</li>
+            <li class="minor">merge: push to github</li>
+            <li class="minor">commit</li>
+            <li class="minor">commit</li>
+            <li class="minor">commit</li>
+            <li class="minor">end</li>
+
+        </ol>
+
+        <ol id="3_github_local_bob" class="notes">
+            <li class="milestone">GIT + LOCAL + Bob</li>
+            <li class="milestone">github.com</li>
+            <li class="milestone">clone to local</li>
+            <li class="minor">commit</li>
+            <li class="minor">commit</li>
+            <li class="minor">finished work: push to github</li>
+            <li class="milestone">Add Bob</li>
+            <li class="minor">commit</li>
+            <li class="minor">commit</li>
+            <li class="minor">commit</li>
+            <li class="minor">commit</li>
+            <li class="milestone">Bob releases 1.1</li>
+            <li class="milestone">pull changes to local</li>
+            <li class="minor">commit push changes</li>
+            <li class="minor">commit</li>
+            <li class="minor">commit</li>
+            <li class="milestone">Bob pull changes</li>
+            <li class="minor">commit</li>
+            <li class="minor"></li>
+            <li class="minor">commit</li>
+            <li class="minor"></li>
+            <li class="minor">commit</li>
+            <li class="minor">commit</li>
+            <li class="minor"></li>
+            <li class="minor">commit</li>
+            <li class="minor"></li>
+            <li class="minor">commit</li>
+            <li class="minor"></li>
+            <li class="minor">commit</li>
+            <li class="minor"></li>
+            <li class="minor">commit</li>
+            <li class="minor"></li>
+            <li class="minor"></li>
+            <li class="minor">commit</li>
+            <li class="minor">commit</li>
+            <li class="minor"></li>
+            <li class="minor"></li>
+            <li class="minor"></li>
+            <li class="minor">commit</li>
+            <li class="minor"></li>
+            <li class="minor">commit</li>
+            <li class="minor">end</li>
+
+
         </ol>
     </div>
 <script>
@@ -79,6 +149,11 @@
             $("li").removeClass("active");
             console.log(data.payload.currentClick + 1);
             $("#" + currPage + " li:nth-child(" + (data.payload.currentClick + 1) + ")").addClass("active");
+
+            $('html, body').animate({
+                scrollTop: $("#" + currPage + " li:nth-child(" + (data.payload.currentClick + 1) + ")").offset().top
+            }, 200);
+
         }
 
 
